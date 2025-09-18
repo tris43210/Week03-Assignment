@@ -66,10 +66,14 @@ async function upgradeBoxes() {
     upgradeButtons.innerHTML = `£${item.cost}`;
     upgradeWrapper.appendChild(upgradeButtons);
 
-    if (cookieInfo.clicks >= item.cost) {
-      cookieInfo -= item.cost;
-      localStorage.setItem("clicks", JSON.stringify(cookieInfo.clicks));
-    }
+    // Click Events For Each of the Buttons - THIS IS NOT WORKING CURRENTLY
+    upgradeButtons.addEventListener(`click`, function () {
+      if (cookieInfo.clicks >= item.cost) {
+        cookieInfo -= item.cost;
+        localStorage.setItem("clicks", JSON.stringify(cookieInfo.clicks));
+        cookieDisplay.innerHTML = cookieInfo.clicks;
+      }
+    });
   });
 }
 
