@@ -65,6 +65,11 @@ async function upgradeBoxes() {
     let upgradeButtons = document.createElement("button");
     upgradeButtons.innerHTML = `£${item.cost}`;
     upgradeWrapper.appendChild(upgradeButtons);
+
+    if (cookieInfo.clicks >= item.cost) {
+      cookieInfo -= item.cost;
+      localStorage.setItem("clicks", JSON.stringify(cookieInfo.clicks));
+    }
   });
 }
 
