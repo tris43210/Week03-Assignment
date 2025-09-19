@@ -19,7 +19,10 @@ const incri = setInterval(function () {
   localStorage.setItem(`clicks`, JSON.stringify(cookieInfo.clicks));
 }, 1000);
 
+// Returned from Storage
+
 const savedClicks = JSON.parse(localStorage.getItem("clicks"));
+const savedCPS = JSON.parse(localStorage.getItem(`cps`));
 
 // Clicking the Cookie
 
@@ -31,12 +34,14 @@ bigCookie.addEventListener(`click`, function () {
 
 // Apply Cookie Info
 
-if (cookieInfo.clicks !== null) {
-  cookieInfo.clicks = JSON.parse(savedClicks);
+if (cookieInfo.clicks !== null || cookieInfo.cps !== null) {
+  cookieInfo.clicks = `Cookie Clicks: ${JSON.parse(savedClicks)}`;
+  cookieInfo.cps = `CPS: Clikcs Per Second: ${JSON.parse(savedCPS)}x`;
   cookieDisplay.innerHTML = cookieInfo.clicks;
+  cookieCount.innerHTML = cookieInfo.cps;
 }
 
-//clearInterval(incri);
+clearInterval(incri);
 
 // Grab Upgrade Infomation
 
@@ -66,12 +71,21 @@ async function upgradeBoxes() {
     upgradeButtons.innerHTML = `£${item.cost}`;
     upgradeWrapper.appendChild(upgradeButtons);
 
-    // Click Events For Each of the Buttons - THIS IS NOT WORKING CURRENTLY
+    let cpsIncrease = document.createElement(`p`);
+    cpsIncrease.innerHTML = `CPS Muliplier ${item.increase}x`;
+    upgradeWrapper.appendChild(cpsIncrease);
+
+    // Click Events For Each of the Buttons
     upgradeButtons.addEventListener(`click`, function () {
       if (cookieInfo.clicks >= item.cost) {
-        cookieInfo -= item.cost;
+        cookieInfo.clicks -= item.cost;
+        cookieInfo.cps += item.increase;
         localStorage.setItem("clicks", JSON.stringify(cookieInfo.clicks));
+        localStorage.setItem(`cps`, JSON.stringify(cookieInfo.cps));
         cookieDisplay.innerHTML = cookieInfo.clicks;
+        cookieCount.innerHTML = `CPS: Clikcs Per Second: ${cookieInfo.cps}x`;
+      } else if (cookieInfo.clicks < item.cost) {
+        alert(`You cannot afford ${item.name}`);
       }
     });
   });
