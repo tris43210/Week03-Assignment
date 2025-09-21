@@ -17,6 +17,7 @@ const incri = setInterval(function () {
   cookieInfo.clicks = cookieInfo.clicks + cookieInfo.cps;
   cookieDisplay.innerHTML = `Cookie Clicks: ${cookieInfo.clicks}`;
   localStorage.setItem(`clicks`, JSON.stringify(cookieInfo.clicks));
+  localStorage.setItem(`cps`, JSON.stringify(cookieInfo.cps));
 }, 1000);
 
 // Returned from Storage
@@ -49,6 +50,7 @@ async function upgradeBoxes() {
   upgrades.forEach(function (item) {
     const upgradeDiv = document.createElement(`div`);
     upgradeWrapper.appendChild(upgradeDiv);
+    upgradeDiv.setAttribute(`class`, `upgrades`);
 
     let names = document.createElement(`h3`);
     names.innerHTML = item.name;

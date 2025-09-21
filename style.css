@@ -1,10 +1,86 @@
 * {
   margin: 0;
-  padding 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
 }
 
-img {
-    width: 500px;
+body {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: #bb8855;
+  color: white;
+}
+
+.display {
+  grid-column-start: 2;
+  background-color: #aa7733;
+  border: 1px solid black;
+}
+
+.cookie-track {
+  text-align: center;
+}
+
+.cookie-wrapper {
+  grid-column-start: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.cookie-wrapper > img {
+  height: auto;
+  object-fit: contain;
+  animation: spin 12s linear infinite;
+  cursor: pointer;
+  width: 100%;
+  z-index: 3;
+}
+
+.upgrade-wrappper {
+  grid-column-start: 2;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  background-color: #aa7733;
+  text-align: center;
+}
+
+.upgrades {
+  border: 1px solid black;
+  margin: 4px;
+  padding: 2px;
+  text-align: center;
+  background-color: #553311;
+  width: 100%;
+}
+
+.upgrades > button {
+  font-weight: bold;
+  background-color: #bb8855;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 1440px) {
+  .cookie-wrapper > img {
+    width: 90%;
+  }
+
+  .cookie-wrapper > img:hover {
+    width: 100%;
     height: auto;
+    cursor: pointer;
+  }
 }
-
