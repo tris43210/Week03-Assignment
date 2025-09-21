@@ -7,7 +7,7 @@
 
 body {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 1fr;
   background-color: #bb8855;
   color: white;
 }
@@ -26,6 +26,7 @@ body {
   grid-column-start: 1;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .cookie-wrapper > img {
@@ -34,7 +35,7 @@ body {
   animation: spin 12s linear infinite;
   cursor: pointer;
   width: 100%;
-  z-index: 3;
+  z-index: 4;
 }
 
 .upgrade-wrappper {
@@ -74,6 +75,10 @@ body {
 }
 
 @media (min-width: 1440px) {
+  body {
+    grid-template-columns: 1fr 2fr;
+  }
+
   .cookie-wrapper > img {
     width: 90%;
   }
